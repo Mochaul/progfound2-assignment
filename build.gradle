@@ -1,0 +1,60 @@
+description = """
+Root Gradle build script for Programming Foundations 2 assignments.
+"""
+
+buildscript {
+    // Project-wide constants
+    ext.checkstyle_version = '8.8'
+    ext.java_version = '1.8'
+    ext.junit5_platform_version = '1.1.0'
+    ext.junit5_reporter_version = '1.1.0'
+    ext.junit5_jupiter_version = '5.1.0'
+    ext.junit5_vintage_version = '5.1.0'
+    ext.mockito_version = '2.5.4'
+    ext.project_group = 'id.ac.ui.cs.progfound2'
+    ext.project_rootdir = project.rootDir.toString()
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath group: 'com.kncept.junit5.reporter', name: 'junit-reporter', version: junit5_reporter_version
+        classpath group: 'org.junit.platform', name: 'junit-platform-gradle-plugin', version: junit5_platform_version
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = java_version
+    targetCompatibility = java_version
+
+    // Use & configure Checkstyle plugin to check code writing style
+    // Also known as 'linter'
+    apply plugin: 'checkstyle'
+    checkstyle {
+        configFile = file(new File("${project_rootdir}/config/google_csui_checks.xml"))
+        toolVersion = checkstyle_version
+        ignoreFailures = true
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testCompile group: 'org.mockito', name: 'mockito-core', version: mockito_version
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junit5_jupiter_version
+        testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junit5_jupiter_version
+        testRuntime group: 'org.junit.platform', name: 'junit-platform-launcher', version: junit5_platform_version
+        testRuntime group: 'org.junit.vintage', name: 'junit-vintage-engine', version: junit5_vintage_version
+    }
+
+    apply plugin: 'com.kncept.junit5.reporter'
+    apply plugin: 'org.junit.platform.gradle.plugin'
+    junitPlatform {
+       enableStandardTestTask true
+    }
+
+    junitPlatformTest.finalizedBy 'junitHtmlReport'
+}
