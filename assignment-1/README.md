@@ -63,6 +63,9 @@ class, `WildCat`, represents the cat that will be transported to Javari Park.
 The second class, `TrainCar`, represents the car in a train that may linked to
 another car in the same train and it will also contain an instance of `WildCat`.
 
+The starter code is available in `src/main/java` directory. **Please ensure all
+of your work is stored in the same folder as starter code.**
+
 The following subsections describe the specifications of each class.
 
 ### WildCat Class
