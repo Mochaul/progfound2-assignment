@@ -6,11 +6,14 @@ public class WildCat {
     double length; // In centimeters
 
     public WildCat(String name, double weight, double length) {
-        // TODO Complete me!
+        this.name = name;
+        this.weight = weight;
+        this.length = length;
     }
 
     public double computeMassIndex() {
-        // TODO Complete me!
-        return 0.0;
+        // BMI = weight (kg) / length (m) squared
+        double bmi = this.weight / (this.length*this.length);
+        return bmi;
     }
 }

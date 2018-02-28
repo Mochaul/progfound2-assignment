@@ -2,27 +2,51 @@ public class TrainCar {
 
     public static final double EMPTY_WEIGHT = 20; // In kilograms
 
-    // TODO Complete me!
+    WildCat cat;
+    TrainCar next = null;
 
     public TrainCar(WildCat cat) {
-        // TODO Complete me!
+        this.cat = cat;
     }
 
     public TrainCar(WildCat cat, TrainCar next) {
-        // TODO Complete me!
+        this.cat = cat;
+        this.next = next;
     }
 
     public double computeTotalWeight() {
-        // TODO Complete me!
-        return 0.0;
+        return helperWeight(this);
     }
 
     public double computeTotalMassIndex() {
-        // TODO Complete me!
-        return 0.0;
+        return helperMassIndex(this);
     }
 
     public void printCar() {
-        // TODO Complete me!
+        System.out.println(helperPrintCar(this));
+    }
+
+    private double helperWeight(TrainCar train){
+        if (train.next == null){
+            return train.cat.weight;
+        }else{
+            return train.cat.weight + helperWeight(train.next);
+        }
+    }
+
+    private double helperMassIndex(TrainCar train){
+        if (train.next == null){
+            return train.cat.computeMassIndex();
+        }else{
+            return train.cat.computeMassIndex() + helperMassIndex(train.next);
+        }
+    }
+
+    private String helperPrintCar(TrainCar train){
+        if (train.next == null){
+            return "(" + train.cat.name + ")";
+        }else{
+            return "(" + train.cat.name + ")--" + helperPrintCar(train.next);
+        }
     }
 }
