@@ -13,7 +13,7 @@ public class WildCat {
 
     public double computeMassIndex() {
         // BMI = weight (kg) / length (m) squared
-        double bmi = this.weight / (this.length*this.length);
+        double bmi = this.weight * 10000 / (this.length*this.length);
         return bmi;
     }
 }
