@@ -7,30 +7,50 @@ public class A1Station {
     // You can add new variables or methods in this class
 
     public static void main(String[] args) {
-        // TODO Complete me!
+        Scanner input = new Scanner(System.in);
+        int dataCount = Integer.parseInt(input.nextLine());
 
-        // testing
-        WildCat cat1 = new WildCat("Garfield", 10.0, 5.0);
-        WildCat cat2 = new WildCat("PUPU", 15.0, 20.0);
+        String[] catArgs;
+        TrainCar head = null;
+        int trainCount = 0;
+        double avgMassIndex;
+        String category; 
 
-        TrainCar train1 = new TrainCar(cat1);
-        TrainCar train2 = new TrainCar(cat2, train1);
+        for(int i=0; i < dataCount; i++){
+            catArgs = input.nextLine().split(",");
+            WildCat cat = new WildCat(catArgs[0], Double.parseDouble(catArgs[1]), Double.parseDouble(catArgs[2]));
 
-        TrainCar head = train2;
+            if (head == null){
+                TrainCar train = new TrainCar(cat);
+                head = train;
+            }else{
+                TrainCar train = new TrainCar(cat, head);
+                head = train;
+            }
+            trainCount++;
 
-        System.out.println("weight");
-        System.out.println(cat1.weight);
-        System.out.println(cat2.weight);
-        System.out.println(head.computeTotalWeight());
-
-        System.out.println("bmi");
-        System.out.println(cat1.computeMassIndex());
-        System.out.println(cat2.computeMassIndex());
-        System.out.println(head.computeTotalMassIndex());
-
-        System.out.println("printing cats");
-        head.printCar();
-        // testing END
-
-    }
+            if (head.computeTotalWeight() + TrainCar.EMPTY_WEIGHT * trainCount > 250.0 || i == dataCount - 1){
+                System.out.println("The train departs to Javari Park");
+                System.out.print("[LOCO]<--");
+                head.printCar();
+                avgMassIndex = head.computeTotalMassIndex()/trainCount;
+                trainCount = 0;
+                head = null;
+                System.out.println("Average mass index of all cats: " +  avgMassIndex);
+                if ( avgMassIndex < 18.5 ){
+                    category = "underweight";
+                }else if(avgMassIndex < 25.0 ){
+                    category = "normal";
+                }else if(avgMassIndex < 30.0 ){
+                    category = "overweight";
+                }else{
+                    category = "obese";
+                }
+                System.out.println("In average, the cats in the train are *" + category + "*");   
+            }
+        } // END For loop
+        
+        input.close();
+    } // END main
 }
+
