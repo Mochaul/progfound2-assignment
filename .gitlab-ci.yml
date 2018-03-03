@@ -25,6 +25,8 @@ build:
 test:a1:
   stage: test
   script: gradle :assignment-1:check
+  except:
+    - master@DDP2-CSUI/assignment
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull

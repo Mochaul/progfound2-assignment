@@ -112,8 +112,8 @@ The following table-like text is text-based class diagram that models
 | - cat : WildCat             |
 | - next : TrainCar           |
 |-----------------------------|
-| + WildCat(cat : WildCat)    |
-| + WildCat(cat : WildCat,    |
+| + TrainCar(cat : WildCat)   |
+| + TrainCar(cat : WildCat,   |
 |           next : TrainCar)  |
 | + computeTotalWeight() :    |
 |   double                    |
