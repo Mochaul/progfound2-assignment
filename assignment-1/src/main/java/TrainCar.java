@@ -26,9 +26,9 @@ public class TrainCar {
     // HELPER FUNC //
     private double helperWeight(TrainCar train){
         if (train.next == null){
-            return train.cat.weight;
+            return train.cat.weight + EMPTY_WEIGHT;
         }else{
-            return train.cat.weight + helperWeight(train.next);
+            return train.cat.weight + helperWeight(train.next) + EMPTY_WEIGHT;
         }
     }
     private double helperMassIndex(TrainCar train){
