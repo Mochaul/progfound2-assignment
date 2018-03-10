@@ -1,2 +1,3 @@
 rootProject.name = 'progfound2-assignment'
 include 'assignment-1'
+include 'assignment-2'
