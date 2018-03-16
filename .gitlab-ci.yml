@@ -22,6 +22,7 @@ build:
       - assignment-*/build
       - assignment-*/.gradle
 
+# Assignment 1
 test:a1:
   stage: test
   script: gradle :assignment-1:check
@@ -55,3 +56,21 @@ funtest:a1:
       - assignment-1/build
       - assignment-1/.gradle
   when: manual
+
+# Assignment 2
+test:a2:
+  stage: test
+  script: gradle :assignment-2:check
+  except:
+    - master@DDP2-CSUI/assignment
+  cache:
+    policy: pull
+    paths:
+      - assignment-2/build
+      - assignment-2/.gradle
+  artifacts:
+    name: "${CI_PROJECT_NAMESPACE}-${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-A2Reports"
+    expire_in: 12 weeks
+    paths:
+      - assignment-2/build/reports
+    when: always
