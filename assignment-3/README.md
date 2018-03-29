@@ -12,7 +12,7 @@ visitor in Javari park.
 
 This assignment covers programming topics as follows:
 
-­ Code reusability
+-­ Code reusability
 - Inheritance
 - Programming by contract
 - Introduction to interface
@@ -115,7 +115,7 @@ Park. The entries are written in following CSV format: `type`,`attractions`
 
 File example:
 ```
-Whales,Circles of Fires
+Whale,Circles of Fires
 Lion,Circles of Fires
 Eagle,Circles of Fires
 Cat,Dancing Animals
@@ -174,8 +174,8 @@ Please provide the source data path: *D:\Data*
 
 Found _3_ valid sections and _0_ invalid sections
 Found _4_ valid attractions and _0_ invalid attractions
-Found _7_ valid animal categories and _0_ invalid animal categories
-Found _7_ valid animal records and _0_ invalid animal records
+Found _3_ valid animal categories and _0_ invalid animal categories
+Found _16_ valid animal records and _0_ invalid animal records
 
 Welcome to Javari Park Festival - Registration Service!
 
@@ -190,14 +190,14 @@ Please choose your preferred section (type the number): *2*
 --World of Aves--
 1. Eagle
 2. Parrot
-Please choose your preferred animals: *2*
+Please choose your preferred animals (type the number): *2*
 
 Unfortunately, no parrot can perform any attraction, please choose other animals
 
 --World of Aves--
 1. Eagle
 2. Parrot
-Please choose your preferred animals: *#*
+Please choose your preferred animals (type the number): *#*
 
 Javari Park has 3 sections:
 1. Explore the Mammals
