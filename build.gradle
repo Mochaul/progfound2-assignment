@@ -6,10 +6,9 @@ buildscript {
     // Project-wide constants
     ext.checkstyle_version = '8.8'
     ext.java_version = '1.8'
+    ext.junit5_jupiter_version = '5.1.0'
     ext.junit5_platform_version = '1.1.0'
     ext.junit5_reporter_version = '1.1.0'
-    ext.junit5_jupiter_version = '5.1.0'
-    ext.junit5_vintage_version = '5.1.0'
     ext.mockito_version = '2.5.4'
     ext.project_group = 'id.ac.ui.cs.progfound2'
     ext.project_rootdir = project.rootDir.toString()
@@ -47,7 +46,6 @@ subprojects {
         testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: junit5_jupiter_version
         testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: junit5_jupiter_version
         testRuntime group: 'org.junit.platform', name: 'junit-platform-launcher', version: junit5_platform_version
-        testRuntime group: 'org.junit.vintage', name: 'junit-vintage-engine', version: junit5_vintage_version
     }
 
     //apply plugin: 'com.kncept.junit5.reporter'
@@ -56,5 +54,13 @@ subprojects {
        enableStandardTestTask true
     }
 
+<<<<<<< HEAD
     //junitPlatformTest.finalizedBy 'junitHtmlReport'
+=======
+    junitHtmlReport {
+        failOnEmpty = false
+    }
+
+    junitPlatformTest.finalizedBy 'junitHtmlReport'
+>>>>>>> 5fc48c59102b2fbe22e3c286ca78dd975681974a
 }
