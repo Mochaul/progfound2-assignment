@@ -10,7 +10,7 @@ Indonesia, Term 2 2017/2018
 1. Problem Sets
     1. [Assignment 1: Train to Javari Park](assignment-1/README.md)
     2. [Assignment 2: Animal, Cage, and Sounds of Javari Park](assignment-2/README.md)
-    3. [Assignment 3: TBD](#)
+    3. [Assignment 3: Javari Park Festival](assignment-3/README.md)
     4. [Assignment 4: TBD](#)
     5. [Assignment 5: TBD](#)
 2. [Initial Setup](#initial-setup)
