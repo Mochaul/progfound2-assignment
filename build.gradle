@@ -54,13 +54,10 @@ subprojects {
        enableStandardTestTask true
     }
 
-<<<<<<< HEAD
-    //junitPlatformTest.finalizedBy 'junitHtmlReport'
-=======
+
     junitHtmlReport {
         failOnEmpty = false
     }
 
     junitPlatformTest.finalizedBy 'junitHtmlReport'
->>>>>>> 5fc48c59102b2fbe22e3c286ca78dd975681974a
 }
