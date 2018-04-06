@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 public class CageArrangement{
     ArrayList[] content = new ArrayList[3];
+    String location = "";
 
     public CageArrangement(Animal[] animals){
+        if (animals.length > 0) this.location = Cage.determineCage(animals[0]).getLocation();
         for (int a=0; a<3; a++) this.content[a] = new ArrayList<Cage>();
         for(int i=0; i < animals.length; i++){
             if (i < animals.length/3){
@@ -18,9 +20,13 @@ public class CageArrangement{
         }
     }
 
+    public String getLocation(){
+        return this.location;
+    }
+
     public String printInfo(){
         String result = "";
-        Cage c = new Cage();
+        Cage c;
         for(int i=0; i < content.length; i++){
             result += "Level " + (3 - i) + ": ";
             for(int j=0; j < content[i].size(); j++){
@@ -29,6 +35,16 @@ public class CageArrangement{
             }
             result += "\n";
         }
-        return "Cage arrangement:\nlocation: " + c.getLocation() + "\n" + result;
+        return result;
     }
+
+    public void rearrange(){
+        ArrayList temp = new ArrayList<Cage>();
+        for(int i=0; i < 2; i++){
+            temp = this.content[(i)%this.content.length];
+            this.content[i] = this.content[(i+1)%this.content.length];
+            this.content[(i+1)%this.content.length] = temp;
+        }
+    }
+
 }

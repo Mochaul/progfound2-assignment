@@ -43,6 +43,10 @@ public class Javari{
         for (int i=0; i<animalTypes.length; i++){
             if(animals[i] != null){
                 CageArrangement a = new CageArrangement(animals[i]);
+                System.out.println("location: "+a.getLocation());
+                System.out.println(a.printInfo());
+                a.rearrange();
+                System.out.println("After rearrangement...");
                 System.out.println(a.printInfo());
             }
         }
