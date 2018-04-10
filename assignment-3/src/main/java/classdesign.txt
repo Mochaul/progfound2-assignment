@@ -1,0 +1,18 @@
+class Animal
+- int id
+- string type
+- string name
+- bool gender
+- double length
+- double height
+- string condition
+- bool healthy
+
+Class Attraction
+- string name
+- Animal[] animal
+
+Class Category
+- string category
+- String[] animals
+- string section
