@@ -16,7 +16,10 @@ public class Category{
     public void addType(String type){
         this.type.add(type);
     }
-    public String[] getType(){
+    public ArrayList<String> getTypesAsArrayList(){
+        return this.types;
+    }
+    public String[] getTypesAsString(){
         return this.type.toArray(new String[this.type.size()]);
     }
     public String getCategory(){

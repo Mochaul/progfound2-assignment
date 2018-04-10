@@ -1,10 +1,8 @@
 public class Categories{
-    ArrayList<Category> sections = new ArrayList<>();
+    ArrayList<Category> sections ;
 
-    public Categories(String type, String category, String section){
-        this.type = type;
-        this.category = category;
-        this.section = section;
+    public Categories(){
+        sections = new ArrayList<>();
     }
     
     public ArrayList<Category> getSections(){
@@ -19,7 +17,26 @@ public class Categories{
         }
     }
 
-    public boolean containsSection(String section){
+    public boolean containType(String type){
+        for(int i=0; i<this.sections.size(); i++){
+            for(int j=0; j<this.sections.get(i).getTypesAsArrayList().size(); j++){
+                if (this.sections.get(i).getTypesAsArrayList().get(j).equals(type)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public String[] toArrayOfString(){
+        String[] arr = new String[this.sections.size()];
+        for(int i=0; i<this.sections.size(); i++){
+            arr[i] = this.section.get(i).getSection();
+        }
+        return arr;
+    }
+
+    private boolean containsSection(String section){
         for(int i=0; i < this.sections.size(); i++){
             if (this.sections.get(i).getSections().equals(section)){
                 return true;
@@ -28,21 +45,13 @@ public class Categories{
         return false;
     }
 
-    public int indexOfSection(String section){
+    private int indexOfSection(String section){
         for(int i=0; i < this.sections.size(); i++){
             if (this.sections.get(i).getSection().equals(section)){
                 return i;
             }
         }
     }
-    // public boolean containsCategory(String category){
-    //     for(int i=0; i < this.sections.size(); i++){
-    //         if (this.sections.get(i).getCategory().equals(category)){
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
 
     
 }
