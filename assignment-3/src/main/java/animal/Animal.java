@@ -9,30 +9,25 @@ public class Animal{
     String condition;
     boolean health;
 
-    public Animal(int id, String name, String gender, double length, double weight, String condition, String health){
+    public Animal(int id, String name, boolean gender, double length, double weight, String condition, boolean health){
         this.id = id;
         this.name = name;
-        if (gender.equals("male")) this.gender = true;
-        else this.gender = false;
+        this.gender = gender;
         this.length = length;
         this.weight = weight;
         this.condition = condition;
-        if (health.equals("healthy")) this.health = true;
-        else this.health = false;
-        if (this instanceof Cat || this instanceof Hamster || this instanceof Lion){
-            this.category = "mammal";
-            this.section = "Explore the Mammals";
-        }
-        else if (this instanceof Eagle || this instanceof Parrot || this instanceof Whale){
-            this.category = "aves";
-            this.section = "World of Aves";
-        }
-        else{
-            this.category = "reptiles";
-            this.section = "Reptillian Kindom";
-        }
+        this.health = health;
     }
     
+    // public static Animal create(String[] arr){
+    //     boolean h, g;
+    //     if (arr[6].equals("healthy")) h = true;
+    //     else h = false; 
+    //     if (arr[2].equals("male")) g = true;
+    //     else g = false;
+    //     return new Animal(Integer.parseInt(arr[0]), arr[2], g, Double.parseDouble(arr[4]), Double.parseDouble(arr[5]), arr[6], h);
+    // }
+
     public int getId(){
         return this.id;
     }
