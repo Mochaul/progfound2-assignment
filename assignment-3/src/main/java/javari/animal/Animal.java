@@ -1,5 +1,13 @@
 package javari.animal;
 
+/**
+ * This class represents common attributes and behaviours found in all animals
+ * in Javari Park.
+ *
+ * @author Programming Foundations 2 Teaching Team
+ * @author TODO If you make changes in this class, please write your name here
+ *     and describe the changes in the comment block
+ */
 public abstract class Animal {
 
     private Integer id;
@@ -8,6 +16,17 @@ public abstract class Animal {
     private Body body;
     private Condition condition;
 
+    /**
+     * Constructs an instance of {@code Animal}.
+     *
+     * @param id    unique identifier
+     * @param type  type of animal, e.g. Hamster, Cat, Lion, Parrot
+     * @param name  name of animal, e.g. hamtaro, simba
+     * @param gender    gender of animal (male/female)
+     * @param length    length of animal in centimeters
+     * @param weight    weight of animal in kilograms
+     * @param condition health condition of the animal
+     */
     public Animal(Integer id, String type, String name, Gender gender, double length,
                   double weight, Condition condition) {
         this.id = id;
@@ -29,6 +48,11 @@ public abstract class Animal {
         return name;
     }
 
+    /**
+     * Returns {@code Gender} identification of the animal.
+     *
+     * @return
+     */
     public Gender getGender() {
         return body.getGender();
     }
@@ -41,13 +65,29 @@ public abstract class Animal {
         return body.getWeight();
     }
 
+    /**
+     * Returns {@code Condition} of the animal.
+     *
+     * @return
+     */
     public Condition getCondition() {
         return condition;
     }
 
+    /**
+     * Determines whether the animal can perform their attraction or not.
+     *
+     * @return
+     */
     public boolean isShowable() {
         return condition == Condition.HEALTHY && specificCondition();
     }
 
+    /**
+     * Performs more specific checking to know whether an animal is able
+     * to perform or not.
+     *
+     * @return
+     */
     protected abstract boolean specificCondition();
 }
