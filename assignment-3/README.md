@@ -312,7 +312,7 @@ animal according to their conditions
 ### Assignment Grading Scheme
 
 - **20%** proper use of inheritance in the code
-- **20%** proper use of inheritance in the code
+- **20%** proper use of interface in the code
 - **30%** complete & correct implementation of all program features
 - **20%** degree of reusability and flexibility expressed in program design
 - **10%** quality of documentations (`javadoc` format and comments in the code)
