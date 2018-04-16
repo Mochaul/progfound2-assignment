@@ -1,43 +1,16 @@
 package javari.park;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-public class Registration {
+public interface Registration {
 
-    private static int COUNT = 0;
+    int getRegistrationId();
 
-    private int id;
-    private String visitorName;
-    private Set<Attraction> selectedAttractions;
+    String getVisitorName();
 
-    public Registration(String visitorName) {
-        this(visitorName, new HashSet<>());
-    }
+    String setVisitorName(String name);
 
-    public Registration(String visitorName, Set<Attraction> selectedAttractions) {
-        this.id = ++COUNT;
-        this.visitorName = visitorName;
-        this.selectedAttractions = selectedAttractions;
-    }
+    List<SelectedAttraction> getSelectedAttractions();
 
-    public int getId() {
-        return id;
-    }
-
-    public String getVisitorName() {
-        return visitorName;
-    }
-
-    public void setVisitorName(String visitorName) {
-        this.visitorName = visitorName;
-    }
-
-    public Set<Attraction> getSelectedAttractions() {
-        return selectedAttractions;
-    }
-
-    public boolean addAttraction(Attraction attraction) {
-        return selectedAttractions.add(attraction);
-    }
+    boolean addSelectedAttraction(SelectedAttraction selected);
 }
