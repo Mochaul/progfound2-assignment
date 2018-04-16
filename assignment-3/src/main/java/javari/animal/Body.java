@@ -23,10 +23,4 @@ public class Body {
     public Gender getGender() {
         return gender;
     }
-
-    @Override
-    public String toString() {
-        return String.format("Body(length=%.2f,weight=%.2f,gender=%s)",
-                length, weight, gender.toString());
-    }
 }
