@@ -12,7 +12,7 @@ visitor in Javari park.
 
 This assignment covers programming topics as follows:
 
-­ Code reusability
+-­ Code reusability
 - Inheritance
 - Programming by contract
 - Introduction to interface
@@ -84,6 +84,32 @@ help the visitors to register into Javari Park Festival!
 > Note: A program skeleton (starter code) will be provided at later time.
 > Until then, we really recommend you to develop your own solution.
 
+The given program skeleton contains 4 Java packages and 1 empty main program
+class. Each package has their own purpose:
+
+1. `javari.animal` package contains abstraction of animals that reside in
+Javari Park
+    > Note: `Condition` and `Gender` of an animal are represented using Java
+    > [enumeration type][EnumType]. It is similar to Java class and interface,
+    > but designed specifically for representing **constant values**
+2. `javari.park` package contains interfaces that dictate how a visitor's
+registration and attraction selection should be implemented in the program
+3. `javari.reader` package contains an abstract class that implemented CSV
+file reading where it stores **all lines from given CSV file** into instance
+variable named `lines`, which is an instance of `List`.
+    > Note: Still wondering why `List`, which is an interface type, can refer
+    > to an (concrete) object? Recall the lecture about interface!
+4. `javari.writer` package contains a class that writes visitor registration
+into JSON file
+    > Note: `RegistrationWriter` in `javari.writer` package uses external
+    > library (i.e. not included in Java standard library) for writing
+    > JSON file. Ensure your text editor/IDE can read Gradle build file
+    > correctly and the library is loaded by Gradle into classpath
+
+You are allowed to reuse the skeleton code completely or partially. If you
+do reuse the skeleton code, make sure your existing solution (if any) is
+integrated into the structure of skeleton code.
+
 ## Preparation
 
 Please follow the instructions in the [root (main) README][RootReadme].
@@ -115,7 +141,7 @@ Park. The entries are written in following CSV format: `type`,`attractions`
 
 File example:
 ```
-Whales,Circles of Fires
+Whale,Circles of Fires
 Lion,Circles of Fires
 Eagle,Circles of Fires
 Cat,Dancing Animals
@@ -174,8 +200,8 @@ Please provide the source data path: *D:\Data*
 
 Found _3_ valid sections and _0_ invalid sections
 Found _4_ valid attractions and _0_ invalid attractions
-Found _7_ valid animal categories and _0_ invalid animal categories
-Found _7_ valid animal records and _0_ invalid animal records
+Found _3_ valid animal categories and _0_ invalid animal categories
+Found _16_ valid animal records and _0_ invalid animal records
 
 Welcome to Javari Park Festival - Registration Service!
 
@@ -190,14 +216,14 @@ Please choose your preferred section (type the number): *2*
 --World of Aves--
 1. Eagle
 2. Parrot
-Please choose your preferred animals: *2*
+Please choose your preferred animals (type the number): *2*
 
 Unfortunately, no parrot can perform any attraction, please choose other animals
 
 --World of Aves--
 1. Eagle
 2. Parrot
-Please choose your preferred animals: *#*
+Please choose your preferred animals (type the number): *#*
 
 Javari Park has 3 sections:
 1. Explore the Mammals
@@ -265,6 +291,14 @@ To compile all Java source code in `src/main/java`:
 gradle :assignment-3:classes
 ```
 
+To run your program using Gradle in command prompt/terminal:
+
+```bash
+gradle :assignment-3:run
+```
+
+> Attention: Make sure your main program class is named `A3Festival`!
+
 ## Submission
 
 Please save & push your latest work (commit) into your online Git
@@ -312,9 +346,10 @@ animal according to their conditions
 ### Assignment Grading Scheme
 
 - **20%** proper use of inheritance in the code
-- **20%** proper use of inheritance in the code
+- **20%** proper use of interface in the code
 - **30%** complete & correct implementation of all program features
 - **20%** degree of reusability and flexibility expressed in program design
 - **10%** quality of documentations (`javadoc` format and comments in the code)
 
 [RootReadme]: ../README.md#initial-setup
+[EnumType]: https://docs.oracle.com/javase/tutorial/java/javaOO/enum.html
