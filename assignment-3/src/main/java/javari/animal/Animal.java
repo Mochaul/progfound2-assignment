@@ -19,9 +19,9 @@ public abstract class Animal {
     /**
      * Constructs an instance of {@code Animal}.
      *
-     * @param id    unique identifier
-     * @param type  type of animal, e.g. Hamster, Cat, Lion, Parrot
-     * @param name  name of animal, e.g. hamtaro, simba
+     * @param id        unique identifier
+     * @param type      type of animal, e.g. Hamster, Cat, Lion, Parrot
+     * @param name      name of animal, e.g. hamtaro, simba
      * @param gender    gender of animal (male/female)
      * @param length    length of animal in centimeters
      * @param weight    weight of animal in kilograms
