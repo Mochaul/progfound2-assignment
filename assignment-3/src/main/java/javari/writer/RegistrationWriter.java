@@ -28,6 +28,9 @@ public class RegistrationWriter {
     /**
      * Writes visitor's registration data into JSON file.
      *
+     * <p>Hint: You can follow the similar approach in this method to implement
+     * your own JSON writing methods that accept multiple registration objects.</p>
+     *
      * @param registration  instance of registration that contains attractions
      *                      that will be watched by visitor
      * @param directory     the directory where JSON file will be written
