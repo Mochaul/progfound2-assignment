@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+
 public class Categories{
-    ArrayList<Category> sections ;
+    ArrayList<Category> sections;
+    int invalid = 0;
 
     public Categories(){
-        sections = new ArrayList<>();
+        this.sections = new ArrayList<>();
+        this.invalid = 0;
     }
     
     public ArrayList<Category> getSections(){
@@ -10,10 +14,12 @@ public class Categories{
     }
 
     public void addCategory(String type, String category, String section){
-        if (this.containsSection(section)){
-            this.sections.get(this.indexOfSection(section)).addType(type);
+        int index = this.indexOfSection(section);
+        if (index != -1){
+            this.sections.get(index).addType(type);
         }else{
-            this.sections.add(new Category(type, category, section));
+            this.sections.add(new Category(category, section));
+            this.sections.get(this.sections.size() - 1).addType(type);
         }
     }
 
@@ -31,18 +37,9 @@ public class Categories{
     public String[] toArrayOfString(){
         String[] arr = new String[this.sections.size()];
         for(int i=0; i<this.sections.size(); i++){
-            arr[i] = this.section.get(i).getSection();
+            arr[i] = this.sections.get(i).getSection();
         }
         return arr;
-    }
-
-    private boolean containsSection(String section){
-        for(int i=0; i < this.sections.size(); i++){
-            if (this.sections.get(i).getSections().equals(section)){
-                return true;
-            }
-        }
-        return false;
     }
 
     private int indexOfSection(String section){
@@ -51,7 +48,39 @@ public class Categories{
                 return i;
             }
         }
+        return -1;
     }
 
-    
+    public String getCategoryOf(String animal){
+        for (int i=0; i<this.sections.size(); i++){
+            for (int j=0; j<this.sections.get(i).getTypesAsArrayList().size(); j++){
+                if (this.sections.get(i).getTypesAsArrayList().get(j).equals(animal)){
+                    return this.sections.get(i).getCategory();
+                }
+            }
+        }
+        return null;
+    } 
+
+    public boolean haveType(String animal){
+        for (int i=0; i<this.sections.size(); i++){
+            for (int j=0; j<this.sections.get(i).getTypesAsArrayList().size(); j++){
+                if (this.sections.get(i).getTypesAsArrayList().get(j).equals(animal)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public String printCategories(){
+        String result = "";
+        for (int i=0; i<this.sections.size(); i++){
+            result += this.sections.get(i).getSection() + ", " + this.sections.get(i).getCategory() + "\n";
+            for (int j=0; j<this.sections.get(i).getTypesAsArrayList().size(); j++){
+                result += "\t-" + this.sections.get(i).getTypesAsArrayList().get(j) + "\n";
+            }
+        }
+        return result;
+    }
 }

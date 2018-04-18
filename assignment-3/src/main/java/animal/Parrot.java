@@ -1,8 +1,8 @@
 package animal;
 
 public class Parrot extends Animal{
-    public Parrot(int id, String name, boolean gender, double length, double weight, String condition, boolean health){
-        super(id, name, gender, length, height, condition, health);
+    public Parrot(int id, String name, boolean gender, double length, double weight, String condition, boolean health, boolean canPerform){
+        super(id, name, gender, length, height, condition, health, canPerform);
     }
 
     public String fly(){

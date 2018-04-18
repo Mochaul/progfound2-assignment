@@ -3,24 +3,23 @@ import java.util.ArrayList;
 public class Category{
     String section;
     String category;
-    ArrayList<String> types = new ArrayList<>();
+    ArrayList<String> types;
     // static ArrayList<String> sections =  new ArrayList<>();
 
-    public Category(String type, String category, String section){
-        this.type.add(type);
+    public Category(String category, String section){
+        this.types = new ArrayList<>();
         this.category = category;
         this.section = section;
-        sections.add(section);
     }
     
     public void addType(String type){
-        this.type.add(type);
+        this.types.add(type);
     }
     public ArrayList<String> getTypesAsArrayList(){
         return this.types;
     }
-    public String[] getTypesAsString(){
-        return this.type.toArray(new String[this.type.size()]);
+    public String[] getTypesAsArray(){
+        return this.types.toArray(new String[this.types.size()]);
     }
     public String getCategory(){
         return this.category;

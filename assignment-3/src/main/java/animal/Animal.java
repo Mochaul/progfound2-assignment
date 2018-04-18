@@ -8,8 +8,9 @@ public class Animal{
     double weight;
     String condition;
     boolean health;
+    boolean canPerform;
 
-    public Animal(int id, String name, boolean gender, double length, double weight, String condition, boolean health){
+    public Animal(int id, String name, boolean gender, double length, double weight, String condition, boolean health, boolean canPerform){
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -17,6 +18,7 @@ public class Animal{
         this.weight = weight;
         this.condition = condition;
         this.health = health;
+        this.canPerform = canPerform;
     }
     
     // public static Animal create(String[] arr){
@@ -48,5 +50,8 @@ public class Animal{
     }
     public boolean getHealth(){
         return this.health;
+    }
+
+    abstract boolean isReadyToPerform();
     }
 }
