@@ -15,8 +15,10 @@ public class Main{
         Categories cat = new Categories();
 
         lines = CSVReader.read(fileName);
-        for (int i=0; i<lines.length; i++){
-            cat.addCategory(lines[i].split(",")[0], lines[i].split(",")[1], lines[i].split(",")[2]);
+        if (lines != null){
+            for (int i=0; i<lines.length; i++){
+                cat.addCategory(lines[i].split(",")[0], lines[i].split(",")[1], lines[i].split(",")[2]);
+            }
         }
         System.out.println("\nlist of categories");
         System.out.println(cat.printCategories());
@@ -29,13 +31,24 @@ public class Main{
         System.out.println("TESTING ATTRACTIONS");
         Attractions javari = new Attractions();
         lines = CSVReader.read(fileName);
-        for (int i=0; i<lines.length; i++){
-            javari.addAttraction(lines[i].split(",")[0], lines[i].split(",")[1], cat);
+        if (lines != null){
+            for (int i=0; i<lines.length; i++){
+                javari.addAttraction(lines[i].split(",")[0], lines[i].split(",")[1], cat);
+            }
         }
-
         System.out.println("\nlist of attractions");
         System.out.println(javari.printAttractions());
         System.out.println("invalid attractions: " + javari.invalid);
 
+        fileName = "animals_record.csv";
+        lines = CSVReader.read(fileName);
+        AnimalFactory animals = new AnimalFactory();
+        
+        if (lines != null){
+            for (int i=0; i<lines.length; i++){
+                animals.addAnimal(lines[i].split(","));
+            }
+        }
+        System.out.println(animals);
     }
 }

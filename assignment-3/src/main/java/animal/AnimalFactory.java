@@ -1,8 +1,9 @@
+package animal;
 import java.util.ArrayList;
 
 public class AnimalFactory{
     ArrayList<Animal> animals;
-    int invalids;
+    int invalid;
 
     public AnimalFactory(){
         animals = new ArrayList<>();
@@ -12,7 +13,7 @@ public class AnimalFactory{
     public void addAnimal(String[] arr){
         if (arr.length != 8){
             System.out.println("invalid number of arguments for craeting Animal");
-            this.invalids += 1;
+            this.invalid += 1;
             return;
         }
         boolean h, g;
@@ -51,5 +52,13 @@ public class AnimalFactory{
             this.animals.add(new Snake(Integer.parseInt(arr[0]), arr[2], g, Double.parseDouble(arr[4]), Double.parseDouble(arr[5]), arr[6], h, canPerform));
             
         }
+    }
+
+    public String toString(){
+        String result = "";
+        for (int i=0; i<this.animals.size(); i++){
+            result += this.animals.get(i) + "\n";
+        }
+        return result;
     }
 }

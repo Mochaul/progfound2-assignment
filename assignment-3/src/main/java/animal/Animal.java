@@ -52,6 +52,13 @@ public class Animal{
         return this.health;
     }
 
-    abstract boolean isReadyToPerform();
+    // abstract boolean isReadyToPerform();
+    // // TODO    
+    // return true;
+    // }
+
+    public String toString(){
+        return String.format("#%d %s", this.id, this.name);
     }
+
 }
