@@ -1,4 +1,7 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class CSVReader{
 
@@ -10,9 +13,9 @@ public class CSVReader{
             String line = null;
             while((line = bufferedReader.readLine()) != null) {
                 in += line;
+                in += "_";
                 // cat.addCategory(line.split(",")[0], line.split(",")[1], line.split(",")[2]);
             }
-            in += "_";
             bufferedReader.close();
         }catch(FileNotFoundException ex) {
             System.out.println("Unable to open file '" + fileName + "'"); 
