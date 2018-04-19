@@ -14,14 +14,11 @@ public class CSVReader{
             while((line = bufferedReader.readLine()) != null) {
                 in += line;
                 in += "_";
-                // cat.addCategory(line.split(",")[0], line.split(",")[1], line.split(",")[2]);
             }
             bufferedReader.close();
         }catch(FileNotFoundException ex) {
-            System.out.println("Unable to open file '" + fileName + "'"); 
             return null;               
         }catch(IOException ex) {
-            System.out.println("Error reading file '" + fileName + "'");   
             return null;               
         }
         return in.split("_");

@@ -1,3 +1,4 @@
+import animal.*;
 import java.util.ArrayList;
 
 public class Attractions{
@@ -9,6 +10,14 @@ public class Attractions{
         this.invalid = 0;
     }
 
+    public ArrayList<Attraction> getAttractions(){
+        return this.attractions;
+    }
+
+    public int getInvalid(){
+        return this.invalid;
+    }
+    
     public void addAttraction(String type, String attractionName, Categories categories){
         int index = this.indexOfAttraction(attractionName);
         if (categories.haveType(type)){
@@ -44,12 +53,26 @@ public class Attractions{
         return -1;
     }
 
+    public void addAnimalForAttractions(Animal[] animals){
+        for (int i=0; i<this.attractions.size(); i++){
+            for (int j=0; j<animals.length; j++){
+                if (this.attractions.get(i).haveType(animals[j].getType()) && animals[j].canPerform()){
+                    this.attractions.get(i).addAnimal(animals[j]);
+                }
+            }
+        }
+    }
+
     public String printAttractions(){
         String result = "";
         for (int i=0; i<this.attractions.size(); i++){
             result += this.attractions.get(i).getName() + "\n";
             for (int j=0; j<this.attractions.get(i).getTypes().size(); j++){
                 result += this.attractions.get(i).getTypes().get(j) + ", ";
+            }
+            result += "\n animals: ";
+            for (int k=0; k<this.attractions.get(i).getAnimals().size(); k++){
+                result += this.attractions.get(i).getAnimals().get(k).getName() + ", ";
             }
             result += "\n";
         }

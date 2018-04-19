@@ -3,6 +3,7 @@ package animal;
 public class Parrot extends Animal{
     public Parrot(int id, String name, boolean gender, double length, double weight, String condition, boolean health, boolean canPerform){
         super(id, name, gender, length, weight, condition, health, canPerform);
+        this.type = "Parrot";
     }
 
     public String fly(){

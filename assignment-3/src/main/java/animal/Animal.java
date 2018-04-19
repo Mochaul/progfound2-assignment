@@ -9,6 +9,7 @@ public class Animal{
     String condition;
     boolean health;
     boolean canPerform;
+    String type;
 
     public Animal(int id, String name, boolean gender, double length, double weight, String condition, boolean health, boolean canPerform){
         this.id = id;
@@ -20,15 +21,6 @@ public class Animal{
         this.health = health;
         this.canPerform = canPerform;
     }
-    
-    // public static Animal create(String[] arr){
-    //     boolean h, g;
-    //     if (arr[6].equals("healthy")) h = true;
-    //     else h = false; 
-    //     if (arr[2].equals("male")) g = true;
-    //     else g = false;
-    //     return new Animal(Integer.parseInt(arr[0]), arr[2], g, Double.parseDouble(arr[4]), Double.parseDouble(arr[5]), arr[6], h);
-    // }
 
     public int getId(){
         return this.id;
@@ -51,14 +43,14 @@ public class Animal{
     public boolean getHealth(){
         return this.health;
     }
-
-    // abstract boolean isReadyToPerform();
-    // // TODO    
-    // return true;
-    // }
-
+    public String getType(){
+        return this.type;
+    }
+    public boolean canPerform(){
+        return this.canPerform;
+    }
     public String toString(){
-        return String.format("#%d %s", this.id, this.name);
+        return String.format("#%d; %s; %s; healthy:%s; canperform:%s", this.id, this.type, this.name, this.health, this.canPerform);
     }
 
 }

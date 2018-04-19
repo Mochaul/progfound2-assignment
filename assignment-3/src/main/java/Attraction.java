@@ -30,4 +30,7 @@ public class Attraction{
     public void addType(String type){
         this.types.add(type);
     }
+    public void addAnimal(Animal animal){
+        this.animals.add(animal);
+    }
 }

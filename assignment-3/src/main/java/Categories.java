@@ -13,6 +13,10 @@ public class Categories{
         return this.sections;
     }
 
+    public int getInvalid(){
+        return this.invalid;
+    }
+    
     public void addCategory(String type, String category, String section){
         int index = this.indexOfSection(section);
         if (index != -1){
