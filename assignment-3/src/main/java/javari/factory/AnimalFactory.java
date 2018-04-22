@@ -2,10 +2,18 @@ package javari.factory;
 import java.util.ArrayList;
 import javari.animal.*;
 
+/**
+ * This class helps to load information about animals into the system
+ * 
+ * @author Nicolaus
+ */
 public class AnimalFactory{
 
     private ArrayList<Animal> animals;
 
+    /**
+     * constructs an instance of {@code AnimalFactory}.
+     */
     public AnimalFactory(){
         this.animals = new ArrayList<>();
     }
@@ -13,9 +21,12 @@ public class AnimalFactory{
     public ArrayList<Animal> getAnimals(){
         return this.animals;
     }
-
-    // design change: validate and process input in CSVReader
-    // change argument type to be appropriate for animal constructor
+    
+    /**
+     * adds animal to instance variable from an array of animal information
+     * 
+     * @return 
+     */
     public void addAnimals(String[] rowsOfInput){
         String[] row;
         for (int i=0; i<rowsOfInput.length; i++){
@@ -46,12 +57,8 @@ public class AnimalFactory{
                     case "Whale":
                         this.animals.add(new Whale(Integer.parseInt(row[0]), row[1], row[2], Gender.parseGender(row[3]), Double.parseDouble(row[4]), Double.parseDouble(row[5]), Condition.parseCondition(row[7]), row[6]));
                         break;
-                    default:
-                        System.out.println("reached default");
-                        break;
                 }
             } catch (Exception e){
-                System.out.println("exception");
                 continue;
             }
         }

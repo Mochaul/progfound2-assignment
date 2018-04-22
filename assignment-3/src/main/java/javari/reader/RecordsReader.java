@@ -9,15 +9,27 @@ import java.util.List;
 import javari.animal.Gender;
 import javari.animal.Condition;
 
+/**
+ * This class performs reading data from animal_records.csv
+ * 
+ * @author Nicolaus
+ */
 public class RecordsReader extends CsvReader{
-    /**
-     * This class counts the number of valid and invalid records from animal_records.csv
-     */
 
+    /**
+     * constructor for RecordsReader
+     * @param file path object reffering to csv file
+     * @throws IOException if given file not found
+     */
     public RecordsReader(Path file) throws IOException{
         super(file);
     }
 
+    /**
+     * counts number of invalid records
+     * 
+     * @return
+     */
      public long countInvalidRecords(){
         long invalidCount = 0;
         String[] row;
@@ -41,6 +53,11 @@ public class RecordsReader extends CsvReader{
         return invalidCount;
      }
 
+     /**
+     * counts number of valid records
+     * 
+     * @return
+     */
     public long countValidRecords(){
         return this.lines.size() - this.countInvalidRecords();
     }
