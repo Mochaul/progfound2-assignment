@@ -11,14 +11,15 @@ import java.util.List;
  * file that contains CSV data.
  *
  * @author Programming Foundations 2 Teaching Team
- * @author TODO If you make changes in this class, please write your name here
- *     and describe the changes in the comment block
+ * @author Nicolaus
+ * changes :
+ * - changed modifier of Path file to protected from private
  */
 public abstract class CsvReader {
 
     public static final String COMMA = ",";
 
-    private final Path file;
+    protected final Path file;
     protected final List<String> lines;
 
     /**
