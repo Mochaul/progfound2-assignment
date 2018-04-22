@@ -6,11 +6,22 @@ import java.util.ArrayList;
 import javari.park.SelectedAttraction;
 import javari.animal.*;
 
+/**
+ * This class represents an Attraction in Javari Park
+ * 
+ * @author Nicolaus
+ */
 public class Attraction implements SelectedAttraction{
     String name;
     String type;
     List<Animal> performers;
 
+    /**
+     * Constructs an instance of {@code Attraction}
+     * 
+     * @param name     name of attraction
+     * @param type     type of animals for attraction e.g. Parrot, Eagle
+     */
     public Attraction(String name, String type){
         this.name = name;
         this.type = type;
@@ -30,7 +41,6 @@ public class Attraction implements SelectedAttraction{
     }
 
     public boolean addPerformer(Animal performer){
-        this.performers.add(performer);
-        return true;    
+        return this.performers.add(performer);    
     }
 }
