@@ -43,4 +43,16 @@ public class Attraction implements SelectedAttraction{
     public boolean addPerformer(Animal performer){
         return this.performers.add(performer);    
     }
+
+    public String printPerformers(){
+        String result = "";
+        for (int i=0; i<this.performers.size(); i++){
+            if (i == this.performers.size() - 1){
+                result += String.format("%s", this.performers.get(i).getName());
+            }else{
+                result += String.format("%s, ", this.performers.get(i).getName());
+            }
+        }
+        return result;
+    }
 }

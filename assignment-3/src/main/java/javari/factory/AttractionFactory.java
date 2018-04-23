@@ -30,21 +30,50 @@ public class AttractionFactory{
         if (animals == null) System.out.println("arg null");
         for (Animal animal : animals){
             if (!animal.isShowable()) continue;
-            for (Attraction attraction : this.getAttractionOfType(animal.getType())){
+            for (Attraction attraction : this.getAttractionsOfType(animal.getType())){
                 attraction.addPerformer(animal);
             }
         }
     }
 
-    public List<Attraction> getAttractionOfType(String type){
-        List<Attraction> result = new ArrayList();
-        if (this.attractions == null) System.out.println("in fact null");
-        for (Attraction attraction :  this.attractions){
+    public int getAttractionCount(){
+        ArrayList<String> names = new ArrayList<>();
+        int ctr = 0;
+        for (Attraction att : this.attractions){
+            if (!names.contains(att.getName())){
+                names.add(att.getName());
+                ctr++;
+            }
+        }
+        return ctr;
+
+    }
+
+    public ArrayList<Attraction> getAttractionsOfType(String type){
+        ArrayList<Attraction> result = new ArrayList<>();
+        for (Attraction attraction : this.attractions){
             if (attraction.getType().equals(type)){
                 result.add(attraction);
             }
         }
         return result;
+    }
+
+    public Attraction getAttractionOf(String name, String type){
+        // for (Attraction att : this.getAttractionsOfType(type)){
+        //     if (att.getName().equals(name)){
+        //         return att;
+        //     }
+        // }
+        // return null;
+        for (Attraction att : this.attractions){
+            if (att.getName().equals(name) && att.getType().equals(type)){
+
+                return att;
+            }
+        }
+        System.out.println("null");
+        return null;
     }
 
     public String toString(){

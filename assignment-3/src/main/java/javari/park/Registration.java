@@ -8,8 +8,9 @@ import java.util.List;
  * done by a visitor in Javari Park.
  *
  * @author Programming Foundations 2 Teaching Team
- * @author TODO If you make changes in this class, please write your name here
- *     and describe the changes in the comment block
+ * @author Nicolaus
+ * changes :
+ * - change return type of method setVisitorName to void from String
  */
 public interface Registration {
 
@@ -34,7 +35,7 @@ public interface Registration {
      * @param name  name of visitor
      * @return
      */
-    String setVisitorName(String name);
+    void setVisitorName(String name);
 
     /**
      * Returns the list of all attractions that will be watched by the

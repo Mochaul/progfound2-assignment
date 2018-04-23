@@ -13,6 +13,10 @@ public class CategoryFactory{
         this.categories = new ArrayList<>(); 
     }
 
+    public List<Category> getCategory(){
+        return this.categories;
+    }
+
     public void addCategories(String[] rowsOfInput){
         String[] row;
         for (int i=0; i<rowsOfInput.length; i++){
