@@ -15,9 +15,11 @@ import javari.attraction.*;
 
 public class Main {
     public static void main(String[] args) {
+        // default path to csv files and name of files to be read
         final String DEFAULT_PATH = "./../../../data";
         final String[] FILE_NAME = new String[] {"animals_categories.csv", "animals_attractions.csv", "animals_records.csv"};
         
+        // initialization of variables, so scope is in main
         String specifiedPath = DEFAULT_PATH;
         Path[] paths = new Path[3];
         CategoriesReader cat_reader;
@@ -28,7 +30,7 @@ public class Main {
         System.out.printf("Welcome to Javari Park Festival - Registration Service!\n\n");
         System.out.printf("... Opening default section database from data. \n\n");
 
-        // initializing paths to csv file
+        // initializing paths to csv file, if file not found, ask user to specify path
         while(true){
             try{
                 for (int i=0; i< FILE_NAME.length; i++){
@@ -46,7 +48,7 @@ public class Main {
             }
         }
 
-        // populates system with categories, attractions and animals
+        // populates system with categories, attractions and animals read from csv files
         System.out.printf("... Loading...");
         CategoryFactory categories =  new CategoryFactory();
         categories.addCategories(cat_reader.getLines().toArray(new String[cat_reader.getLines().size()]));
@@ -67,17 +69,18 @@ public class Main {
         
         int menuPosition = 0; // indicate which menu user is currently on
         Visitor visitor = null;
-        String selection = "0", selection2 = "0", selection3 = "0";
+        String selection = "0", selection2 = "0", selection3 = "0"; // tracks user selection in menus
         ArrayList<Attraction> selected = new ArrayList<>();
 
 
         while (true){
-            if (menuPosition < 0) menuPosition = 0;
+            if (menuPosition < 0) menuPosition = 0; // adjusts menuPosition
 
-            // section selection
+            // section selection menu
             if (menuPosition == 0){
                 System.out.printf("\nJavari Park has %d sections:\n", categories.getCategory().size());
                 for(int i=0; i<categories.getCategory().size(); i++){
+                    // print selections available
                     System.out.printf("%d. %s\n", i+1, categories.getCategory().get(i).getName());
                 }
                 selection = "0";
@@ -86,6 +89,7 @@ public class Main {
                     try { 
                         selection = in.nextLine();
                         if (selection.equals("#")) {
+                            // goes to section selection menu
                             menuPosition--;
                             break;
                         }
@@ -95,10 +99,11 @@ public class Main {
                 }
             }
 
-            // animal selection
+            // animal selection menu
             if (menuPosition == 1){
                 System.out.printf("\n--%s--\n", categories.getCategory().get(Integer.parseInt(selection) - 1).getName());
                 for (int i=0; i<categories.getCategory().get(Integer.parseInt(selection) - 1).getTypes().size(); i++){
+                    // print animal available in section picked
                     System.out.printf("%d. %s\n", i+1, categories.getCategory().get(Integer.parseInt(selection) - 1).getTypes().get(i));
                 }
                 selection2 = "0";
@@ -107,6 +112,7 @@ public class Main {
                     try { 
                         selection2 = in.nextLine(); 
                         if (selection2.equals("#")){
+                            // goes to section selection menu
                             menuPosition--;
                             break;
                         }
@@ -116,11 +122,12 @@ public class Main {
                 }
             }
 
-            // attraction selection
+            // attraction selection menu
             if (menuPosition == 2){
                 System.out.printf("\n---%s---\n", categories.getCategory().get(Integer.parseInt(selection) - 1).getTypes().get(Integer.parseInt(selection2) - 1));
                 selected = attractions.getAttractionsOfType(categories.getCategory().get(Integer.parseInt(selection) - 1).getTypes().get(Integer.parseInt(selection2) - 1));
                 for (int i=0; i<selected.size(); i++){
+                    // print attraction available by animal picked
                     System.out.printf("%d. %s\n", i+1, selected.get(i).getName());
                 }
                 selection3 = "0";
@@ -129,6 +136,7 @@ public class Main {
                     try { 
                         selection3 = in.nextLine(); 
                         if (selection3.equals("#")){
+                            // goes to attraction selection menu
                             menuPosition--;
                             break;
                         }
@@ -141,6 +149,7 @@ public class Main {
             // printing ticket info
             if (menuPosition == 3){
                 if (visitor == null){
+                    // does not ask user for name if this is registering another attraction
                     System.out.printf("\nWow, one more step,\nplease let us know your name: ");
                     String name = in.nextLine();
                     visitor = new Visitor(name);
@@ -167,7 +176,7 @@ public class Main {
                     continue;
                 }
 
-                // asking if want to attend another attration
+                // asking if want to register another attration
                 String another = "";
                 while (!another.equals("Y") && !another.equals("N")){
                     System.out.printf("Thank you for your interest. Would you like to register to other attractions? (Y/N): ");
