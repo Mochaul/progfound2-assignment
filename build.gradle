@@ -55,9 +55,9 @@ subprojects {
     }
 
 
-    junitHtmlReport {
-        failOnEmpty = false
-    }
-
-    junitPlatformTest.finalizedBy 'junitHtmlReport'
+//    junitHtmlReport {
+//        failOnEmpty = false
+//    }
+//
+//    junitPlatformTest.finalizedBy 'junitHtmlReport'
 }

@@ -30,9 +30,6 @@ public class AnimalFactory{
     public void addAnimals(String[] rowsOfInput){
         String[] row;
         for (int i=0; i<rowsOfInput.length; i++){
-            //Animal(Integer id, String type, String name, Gender gender, double length,
-            //  double weight, Condition condition)
-            //1,Hamster,hamtaro,male,5,0.25,,healthy
             row = rowsOfInput[i].split(",");
             try{
                 switch (row[1]){
