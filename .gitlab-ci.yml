@@ -92,3 +92,21 @@ test:a3:
     paths:
       - assignment-3/build/reports
     when: always
+
+# Assignment 4
+test:a4:
+  stage: test
+  script: gradle :assignment-4:check
+  except:
+    - master@DDP2-CSUI/assignment
+  cache:
+    policy: pull
+    paths:
+      - assignment-4/build
+      - assignment-4/.gradle
+  artifacts:
+    name: "${CI_PROJECT_NAMESPACE}-${CI_PROJECT_NAME}-${CI_COMMIT_REF_NAME}-A4Reports"
+    expire_in: 12 weeks
+    paths:
+      - assignment-4/build/reports
+    when: always

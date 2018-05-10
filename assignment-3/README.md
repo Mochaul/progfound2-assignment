@@ -8,11 +8,11 @@ Indonesia, Term 2 2017/2018
 This document contains the description and general information required for
 completing the **third assignment** of Programming Foundations 2 course. The
 assignment is about creating a program for handling registration of park
-visitor in Javari park.
+visitor in Javari Park.
 
 This assignment covers programming topics as follows:
 
--­ Code reusability
+- Code reusability
 - Inheritance
 - Programming by contract
 - Introduction to interface
