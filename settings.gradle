@@ -2,4 +2,5 @@ rootProject.name = 'progfound2-assignment'
 include 'assignment-1'
 include 'assignment-2'
 include 'assignment-3'
+include 'assignment-4'
 
