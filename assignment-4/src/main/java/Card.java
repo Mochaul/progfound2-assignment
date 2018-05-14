@@ -1,7 +1,10 @@
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Card extends JButton{
     private final int id;
+    private final String defaultIconPath = "./../../../icons/0.png";
+    private final String contentIconPath;
     private boolean matched;
     private String content;
     private boolean canClick;
@@ -9,6 +12,7 @@ public class Card extends JButton{
     public Card(int id, String s){
         super("");
         this.id = id;
+        this.contentIconPath = "./../../../icons/" + id + ".png";
         this.matched = false;
         this.content = s;
         this.canClick = true;
@@ -32,9 +36,11 @@ public class Card extends JButton{
     
     public void flip(){
         if(this.getText().equals("")){
-            this.setText(content);
+            this.setText("_");
+            this.setIcon(new ImageIcon(contentIconPath));
         }else{
             this.setText("");
+            this.setIcon(new ImageIcon(defaultIconPath));
         }
     }
 }
