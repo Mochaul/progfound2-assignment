@@ -7,6 +7,7 @@ import java.util.Arrays;
 public class Board extends JFrame{
     private final int SIZE = 6;
     private final int CARD_WIDTH = 100;
+    private final int CARD_HEIGHT = 100;
     private final String defaultIconPath = "./../../../icons/0.png";
     private Card[] cards = new Card[SIZE*SIZE];
     private Card selected1;
@@ -29,18 +30,18 @@ public class Board extends JFrame{
 
         // fill game board
         JPanel gameBoard = new JPanel(new GridLayout(SIZE, SIZE));
+        gameBoard.setMaximumSize(new Dimension(100,100));
         for(Card card : cards){
             gameBoard.add(card);
             card.addActionListener(new ActionListener(){  
                 public void actionPerformed(ActionEvent e){  
                     if(card.getCanClick()){
-                        card.flip();
                         pickCard(card);
                     }
                 }  
             });
         }
-        gameBoard.setSize(CARD_WIDTH*SIZE, CARD_WIDTH*SIZE);
+        gameBoard.setSize(CARD_WIDTH*SIZE, CARD_HEIGHT*SIZE);
         gameBoard.setVisible(true);
 
         // add buttons to restart and exit
@@ -55,7 +56,7 @@ public class Board extends JFrame{
         });
         exit.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
-                System.exit(0); // CHANGE LATER
+                exitGame();
             }  
         });
         menu.add(playAgain);
@@ -63,7 +64,7 @@ public class Board extends JFrame{
         menu.add(turnsCounter);
 
         // initialize timer
-        timer = new Timer(500, new ActionListener(){
+        timer = new Timer(750, new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 checkCard();
             }
@@ -73,11 +74,13 @@ public class Board extends JFrame{
         // add components to JFrame
         this.add(gameBoard, BorderLayout.CENTER);
         this.add(menu, BorderLayout.SOUTH);
-        this.setSize(800,800);
+        this.setSize(CARD_WIDTH*SIZE, CARD_HEIGHT*SIZE + 50);
+        // this.setSize(500,500);
         this.setVisible(true);
     }
 
     private void pickCard(Card card){
+        card.flip();
         if (selected1 == null){
             selected1 = card;
             selected1.setCanClick(false);
@@ -90,9 +93,8 @@ public class Board extends JFrame{
         if (selected1 != null && selected2 != null){
             turns++;
             turnsCounter.setText("Number of turns: " + this.turns);
-            setAllCardsCanClick(false);
+            this.setAllCardsCanClick(false);
             timer.start();
-            setAllCardsCanClick(true);
         }
     }
 
@@ -107,6 +109,7 @@ public class Board extends JFrame{
         selected2.flip();
         selected1 = null;
         selected2 = null;
+        this.setAllCardsCanClick(true);
         if(isWon()){
             JOptionPane.showMessageDialog(this, String.format("You won with %d turns!", turns));
             dispose();
@@ -134,5 +137,9 @@ public class Board extends JFrame{
             }
         }
         return true;
+    }
+
+    private void exitGame(){
+        System.exit(0);
     }
 }

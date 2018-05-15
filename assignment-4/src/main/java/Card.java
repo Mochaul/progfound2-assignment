@@ -1,5 +1,8 @@
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.*;
 
 public class Card extends JButton{
     private final int id;
@@ -16,6 +19,7 @@ public class Card extends JButton{
         this.faceUp = false;
         this.matched = false;
         this.canClick = true;
+        this.setFocusPainted(false);
     }
 
     public int getId(){
@@ -39,13 +43,21 @@ public class Card extends JButton{
     public void setCanClick(boolean canClick){
         this.canClick = canClick;
     }
+    public void setIconFound(boolean b){
+        this.iconFound = b;
+    }
     
     public void flip(){
         if(!this.getFaceUp()){
             this.setFaceUp(true);
-            this.setIcon(new ImageIcon(contentIconPath));
+            try{
+                this.setIcon(new ImageIcon(ImageIO.read(new File(contentIconPath))));
+            }catch(IOException e){
+                this.setIcon(null);
+            }
         }else{
             this.setFaceUp(false);
+            this.setText("");
             this.setIcon(new ImageIcon(defaultIconPath));
         }
     }
