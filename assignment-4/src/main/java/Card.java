@@ -4,6 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.*;
 
+/**
+ * Card is a class that extends {@link JButton}.
+ * Card represents an individual card icon in the memory match pair game.
+ * 
+ * @author Nicolaus
+ */
 public class Card extends JButton{
     private final int id;
     private final String defaultIconPath = "./../../../icons/0.png";
@@ -12,6 +18,11 @@ public class Card extends JButton{
     private boolean matched;
     private boolean canClick;
 
+    /**
+     * Creates an instance of {@code Card}.
+     * 
+     * @param id    id to be assigned to the card
+     */
     public Card(int id){
         super("");
         this.id = id;
@@ -43,11 +54,9 @@ public class Card extends JButton{
     public void setCanClick(boolean canClick){
         this.canClick = canClick;
     }
-    public void setIconFound(boolean b){
-        this.iconFound = b;
-    }
     
     public void flip(){
+        // flips card between showing default icon (backside of card) and content icon (front side of card)
         if(!this.getFaceUp()){
             this.setFaceUp(true);
             try{

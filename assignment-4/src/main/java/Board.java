@@ -4,6 +4,12 @@ import java.awt.event.*;
 import java.util.Collections;
 import java.util.Arrays;
 
+/**
+ * Board is a class that extends {@link JFrame}, 
+ * Board represents the main container for the memory match pair game
+ * 
+ * @author Nicolaus
+ */
 public class Board extends JFrame{
     private final int SIZE = 6;
     private final int CARD_WIDTH = 100;
@@ -16,6 +22,10 @@ public class Board extends JFrame{
     private int turns;
     private JLabel turnsCounter;
 
+    /**
+     * Initializes the game board with 18 pairs of icon cards 
+     * shuffled and displayed in 6 by 6 grid
+     */
     public Board(){
         turns = 0;
         selected1 = null;
@@ -30,7 +40,6 @@ public class Board extends JFrame{
 
         // fill game board
         JPanel gameBoard = new JPanel(new GridLayout(SIZE, SIZE));
-        gameBoard.setMaximumSize(new Dimension(100,100));
         for(Card card : cards){
             gameBoard.add(card);
             card.addActionListener(new ActionListener(){  
@@ -75,30 +84,31 @@ public class Board extends JFrame{
         this.add(gameBoard, BorderLayout.CENTER);
         this.add(menu, BorderLayout.SOUTH);
         this.setSize(CARD_WIDTH*SIZE, CARD_HEIGHT*SIZE + 50);
-        // this.setSize(500,500);
         this.setVisible(true);
     }
 
     private void pickCard(Card card){
+        // picks the card in argument, when two is selected, start timer then do checking
         card.flip();
         if (selected1 == null){
             selected1 = card;
-            selected1.setCanClick(false);
+            selected1.setCanClick(false); // disables picked button
         }
         else{
             selected2 = card;
-            selected2.setCanClick(false);
+            selected2.setCanClick(false); // disables picked button
         }
 
         if (selected1 != null && selected2 != null){
             turns++;
             turnsCounter.setText("Number of turns: " + this.turns);
-            this.setAllCardsCanClick(false);
+            this.setAllCardsCanClick(false); // disables all button while waiting for timer
             timer.start();
         }
     }
 
     private void checkCard(){
+        // checks if two selected cards has the same id
         if (selected1.getId() == selected2.getId()){
             selected1.setVisible(false);
             selected2.setVisible(false);
@@ -109,10 +119,10 @@ public class Board extends JFrame{
         selected2.flip();
         selected1 = null;
         selected2 = null;
-        this.setAllCardsCanClick(true);
+        this.setAllCardsCanClick(true); // reenable all buttons
         if(isWon()){
             JOptionPane.showMessageDialog(this, String.format("You won with %d turns!", turns));
-            dispose();
+            exitGame();
         }
     }
 
@@ -140,6 +150,6 @@ public class Board extends JFrame{
     }
 
     private void exitGame(){
-        System.exit(0);
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 }
