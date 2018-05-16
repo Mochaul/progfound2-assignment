@@ -135,9 +135,12 @@ public class Board extends JFrame{
     private void resetBoard(){
         turns = 0;
         turnsCounter.setText("Number of turns: " + this.turns);
+        selected1 = null;
+        selected2 = null;
         for(Card card : cards){
             card.resetCard();
         }
+        Collections.shuffle(Arrays.asList(cards));
     }
 
     private boolean isWon(){
