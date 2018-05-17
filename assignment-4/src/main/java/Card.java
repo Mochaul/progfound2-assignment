@@ -1,5 +1,7 @@
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.*;
@@ -10,10 +12,11 @@ import javax.imageio.*;
  * 
  * @author Nicolaus
  */
-public class Card extends JButton{
+public class Card{
     private final int id;
-    private final String defaultIconPath = "./../../../icons/0.png";
-    private final String contentIconPath;
+    private final ImageIcon faceUpIcon;
+    private final ImageIcon faceDownIcon;
+    private JButton button;
     private boolean faceUp;
     private boolean matched;
     private boolean canClick;
@@ -23,23 +26,28 @@ public class Card extends JButton{
      * 
      * @param id    id to be assigned to the card
      */
-    public Card(int id){
-        super("");
+    public Card(int id) throws IOException{
+        this.button = new JButton("");
         this.id = id;
-        this.contentIconPath = "./../../../icons/" + id + ".png";
+        this.faceUpIcon = new ImageIcon(ImageIO.read(new File("./../../../icons/" + id + ".png")));
+        this.faceDownIcon = new ImageIcon(ImageIO.read(new File("./../../../icons/0.png")));
         this.faceUp = false;
         this.matched = false;
         this.canClick = true;
-        this.setFocusPainted(false);
+        this.button.setIcon(faceDownIcon);
+        this.getButton().setFocusPainted(false);
     }
 
+    public JButton getButton(){
+        return this.button;
+    }
     public int getId(){
         return this.id;
     }
-    public boolean getFaceUp(){
+    public boolean isFaceUp(){
         return this.faceUp;
     }
-    public void setFaceUp(boolean b){
+    public void setFace(boolean b){
         this.faceUp = b;
     }
     public boolean getMatched(){
@@ -57,24 +65,19 @@ public class Card extends JButton{
     
     public void flip(){
         // flips card between showing default icon (backside of card) and content icon (front side of card)
-        if(!this.getFaceUp()){
-            this.setFaceUp(true);
-            try{
-                this.setIcon(new ImageIcon(ImageIO.read(new File(contentIconPath))));
-            }catch(IOException e){
-                this.setIcon(null);
-            }
+        if(!this.isFaceUp()){
+            this.setFace(true);
+            this.getButton().setIcon(faceUpIcon);
         }else{
-            this.setFaceUp(false);
-            this.setText("");
-            this.setIcon(new ImageIcon(defaultIconPath));
+            this.setFace(false);
+            this.getButton().setIcon(faceDownIcon);
         }
     }
 
     public void resetCard(){
-        this.setFaceUp(false);
+        this.setFace(false);
         this.setMatched(false);
-        this.setIcon(new ImageIcon(defaultIconPath));
-        this.setVisible(true);
+        this.getButton().setIcon(faceDownIcon);
+        this.getButton().setVisible(true);
     }
 }

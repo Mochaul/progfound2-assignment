@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Arrays;
 
@@ -10,11 +11,11 @@ import java.util.Arrays;
  * 
  * @author Nicolaus
  */
-public class Board extends JFrame{
+public class Board{
     private final int SIZE = 6;
     private final int CARD_WIDTH = 100;
     private final int CARD_HEIGHT = 100;
-    private final String defaultIconPath = "./../../../icons/0.png";
+    private JFrame frame;
     private Card[] cards = new Card[SIZE*SIZE];
     private Card selected1;
     private Card selected2;
@@ -26,7 +27,8 @@ public class Board extends JFrame{
      * Initializes the game board with 18 pairs of icon cards 
      * shuffled and displayed in 6 by 6 grid
      */
-    public Board(){
+    public Board() throws IOException{
+        frame = new JFrame();
         turns = 0;
         selected1 = null;
         selected2 = null;
@@ -34,15 +36,14 @@ public class Board extends JFrame{
         // fill array then shuffle
         for(int i=0; i<SIZE*SIZE; i++){
             this.cards[i] = new Card((i/2)+1);
-            this.cards[i].setIcon(new ImageIcon(defaultIconPath));
         }
         Collections.shuffle(Arrays.asList(cards));
 
         // fill game board
         JPanel gameBoard = new JPanel(new GridLayout(SIZE, SIZE));
         for(Card card : cards){
-            gameBoard.add(card);
-            card.addActionListener(new ActionListener(){  
+            gameBoard.add(card.getButton());
+            card.getButton().addActionListener(new ActionListener(){  
                 public void actionPerformed(ActionEvent e){  
                     if(card.getCanClick()){
                         pickCard(card);
@@ -81,10 +82,14 @@ public class Board extends JFrame{
         timer.setRepeats(false);
 
         // add components to JFrame
-        this.add(gameBoard, BorderLayout.CENTER);
-        this.add(menu, BorderLayout.SOUTH);
-        this.setSize(CARD_WIDTH*SIZE, CARD_HEIGHT*SIZE + 50);
-        this.setVisible(true);
+        this.frame.add(gameBoard, BorderLayout.CENTER);
+        this.frame.add(menu, BorderLayout.SOUTH);
+        this.frame.setSize(CARD_WIDTH*SIZE, CARD_HEIGHT*SIZE + 50);
+        this.frame.setVisible(true);
+    }
+    
+    public JFrame getFrame(){
+        return this.frame;
     }
 
     private void pickCard(Card card){
@@ -98,20 +103,27 @@ public class Board extends JFrame{
             selected2 = card;
             selected2.setCanClick(false); // disables picked button
         }
-
         if (selected1 != null && selected2 != null){
-            turns++;
-            turnsCounter.setText("Number of turns: " + this.turns);
+            updateTurnLabel();
             this.setAllCardsCanClick(false); // disables all button while waiting for timer
             timer.start();
         }
     }
 
+    /**
+     * increments turns by 1 and updates label
+     */
+    private void updateTurnLabel(){
+        turns++;
+        turnsCounter.setText("Number of turns: " + this.turns);
+    }
+
     private void checkCard(){
+        this.setAllCardsCanClick(false);
         // checks if two selected cards has the same id
         if (selected1.getId() == selected2.getId()){
-            selected1.setVisible(false);
-            selected2.setVisible(false);
+            selected1.getButton().setVisible(false);
+            selected2.getButton().setVisible(false);
             selected1.setMatched(true);
             selected2.setMatched(true);
         }
@@ -121,7 +133,7 @@ public class Board extends JFrame{
         selected2 = null;
         this.setAllCardsCanClick(true); // reenable all buttons
         if(isWon()){
-            JOptionPane.showMessageDialog(this, String.format("You won with %d turns!", turns));
+            JOptionPane.showMessageDialog(this.frame, String.format("You won with %d turns!", turns));
             exitGame();
         }
     }
@@ -153,6 +165,6 @@ public class Board extends JFrame{
     }
 
     private void exitGame(){
-        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        this.getFrame().dispatchEvent(new WindowEvent(this.getFrame(), WindowEvent.WINDOW_CLOSING));
     }
 }
