@@ -1,3 +1,5 @@
+Solutions on this repository by Nicolaus Christian Gozali (1706020446)
+
 # Assignments Repository
 
 CSGE601021 Programming Foundations 2 @ Faculty of Computer Science Universitas
